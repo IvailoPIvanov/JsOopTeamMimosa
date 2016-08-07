@@ -17,7 +17,10 @@ function setFood() {
     for (var x = 0; x < grid.width; x++) {
         for (var y = 0; y < grid.height; y++) {
             if (grid.get(x, y) === EMPTY) {
-                empty.push({x: x, y: y});
+                empty.push({
+                    x: x,
+                    y: y
+                });
             }
         }
     }
@@ -45,13 +48,13 @@ if (grid.get(nx, ny) === FRUIT) {
 
     var tail = snake.remove();
     grid.set(EMPTY, tail.x, tail.y);
-}
-/**
- *  add a snake id at the new position and append it to
- * the snake queue
- */
-grid.set(SNAKE, nx, ny);
-snake.insert(nx, ny);
+
+    /**
+     *  add a snake id at the new position and append it to
+     * the snake queue
+     */
+    grid.set(SNAKE, nx, ny);
+    snake.insert(nx, ny);
 }
 
 
@@ -59,8 +62,8 @@ function draw() {
     /**
      *calculate tile-width and -height
      */
-    var tw = canvas.width / grid.width;
-    var th = canvas.height / grid.height;
+    var tileWidth = canvas.width / grid.width;
+    var tileHeight = canvas.height / grid.height;
     /**
      * iterate through the grid and draw all cells
      */
@@ -80,7 +83,7 @@ function draw() {
                     ctx.fillStyle = "#f00";
                     break;
             }
-            ctx.fillRect(x * tw, y * th, tw, th);
+            ctx.fillRect(x * tileWidth, y * tileHeight, tileWidth, tileHeight);
         }
     }
-                
+}

@@ -88,21 +88,6 @@
      grid.set(FRUIT, randpos.x, randpos.y);
  }
 
- //  function sound(src) {
- //      this.sound = document.createElement("audio");
- //      this.sound.src = src;
- //      this.sound.setAttribute("preload", "auto");
- //      this.sound.setAttribute("controls", "none");
- //      this.sound.style.display = "none";
- //      document.body.appendChild(this.sound);
- //      this.play = function() {
- //          this.sound.play();
- //      }
- //      this.stop = function() {
- //          this.sound.pause();
- //      }
- //  }
-
  function main() {
      container = document.getElementById('game-container');
      canvas = document.createElement("canvas");
@@ -115,7 +100,6 @@
      ctx.font = "12px Helvetica";
      frames = 0;
      keystate = {};
-     //  myMusic = new sound("eminem.mp3");
 
      document.addEventListener("keydown", function(evt) {
          keystate[evt.keyCode] = true;
@@ -136,6 +120,7 @@
          y: ROWS - 1
      };
      snake.init(UP, sp.x, sp.y);
+     //  snakeNew.init(UP, sp.x + 2, sp.y + 2);
      grid.set(SNAKE, sp.x, sp.y);
      setFood();
  }

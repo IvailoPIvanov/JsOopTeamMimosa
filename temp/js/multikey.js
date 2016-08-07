@@ -120,6 +120,6 @@ var multikey = (function() {
         handler: function(e) {
             handler(e);
         }
-    }
+    };
 
 })();

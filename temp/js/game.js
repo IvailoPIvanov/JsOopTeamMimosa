@@ -1,10 +1,7 @@
  // Constants
-
-
  var
-
-     COLS = 40,
-     ROWS = 35,
+     COLS = 46,
+     ROWS = 28,
      EMPTY = 0,
      SNAKE = 1,
      FRUIT = 2,
@@ -91,24 +88,25 @@
      grid.set(FRUIT, randpos.x, randpos.y);
  }
 
- function sound(src) {
-     this.sound = document.createElement("audio");
-     this.sound.src = src;
-     this.sound.setAttribute("preload", "auto");
-     this.sound.setAttribute("controls", "none");
-     this.sound.style.display = "none";
-     document.body.appendChild(this.sound);
-     this.play = function() {
-         this.sound.play();
-     }
-     this.stop = function() {
-         this.sound.pause();
-     }
- }
+ //  function sound(src) {
+ //      this.sound = document.createElement("audio");
+ //      this.sound.src = src;
+ //      this.sound.setAttribute("preload", "auto");
+ //      this.sound.setAttribute("controls", "none");
+ //      this.sound.style.display = "none";
+ //      document.body.appendChild(this.sound);
+ //      this.play = function() {
+ //          this.sound.play();
+ //      }
+ //      this.stop = function() {
+ //          this.sound.pause();
+ //      }
+ //  }
 
  function main() {
 
      canvas = document.createElement("canvas");
+     canvas.className = "canvasMain";
      canvas.width = COLS * 20;
      canvas.height = ROWS * 20;
      ctx = canvas.getContext("2d");
@@ -116,7 +114,7 @@
      ctx.font = "12px Helvetica";
      frames = 0;
      keystate = {};
-     myMusic = new sound("eminem.mp3");
+     //  myMusic = new sound("eminem.mp3");
 
      document.addEventListener("keydown", function(evt) {
          keystate[evt.keyCode] = true;

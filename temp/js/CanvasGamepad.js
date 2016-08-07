@@ -827,6 +827,12 @@ var CanvasGamepad = (function() {
 								dir += 8;
 							}
 							break;
+						case "v": //v
+							player.play();
+							break;
+						case "b": //b
+							player.pause();
+							break;
 						default:
 							if (keys[prop]) {
 								for (var n = 0; n < buttons_layout.length; n++) {

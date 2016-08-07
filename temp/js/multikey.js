@@ -86,20 +86,21 @@ var multikey = (function() {
      ** @description
      */
     function handler(e) {
+        var keys = {};
         var char = String.fromCharCode(e.keyCode).toLowerCase();
 
         if (!map) {
-            states[char] = e.type === "keydown" ? true : false;
+            keys[char] = e.type === "keydown" ? true : false;
         } else {
             valid = false;
             if (map.indexOf(char) != -1) {
-                states[char] = e.type === "keydown" ? true : false;
+                keys[char] = e.type === "keydown" ? true : false;
                 valid = true;
             }
         }
 
         if ((typeof cb === 'function') && valid) {
-            cb(states);
+            cb(keys);
         }
     }
 

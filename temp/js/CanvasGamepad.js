@@ -89,7 +89,7 @@ var CanvasGamepad = (function() {
 	 ** @description
 	 ** TOP_LEFT | TOP_RIGHT | BOTTOM_LEFT | BOTTOM_RIGHT
 	 */
-	var layout = "TOP_RIGHT";
+	var layout = "TOP_LEFT";
 
 
 

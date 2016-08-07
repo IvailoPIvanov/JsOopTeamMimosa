@@ -5,6 +5,7 @@
      EMPTY = 0,
      SNAKE = 1,
      FRUIT = 2,
+     APPLE = 5,
      LEFT = 0,
      UP = 1,
      RIGHT = 2,
@@ -14,9 +15,9 @@
      KEY_RIGHT = 39,
      KEY_DOWN = 40,
      myMusic,
+     speed = 8,
      ctx,
      score;
-
 
  grid = {
      width: null,
@@ -70,7 +71,7 @@
      }
  };
 
- function setFood() {
+ function setFood(FOOD) {
      var empty = [];
 
      for (var x = 0; x < grid.width; x++) {
@@ -85,7 +86,7 @@
      }
 
      var randpos = empty[Math.round(Math.random() * (empty.length - 1))];
-     grid.set(FRUIT, randpos.x, randpos.y);
+     grid.set(FOOD, randpos.x, randpos.y);
  }
 
  function main() {
@@ -96,6 +97,7 @@
      canvas.width = COLS * 20;
      canvas.height = ROWS * 20;
      ctx = canvas.getContext("2d");
+     //  ctx.scale(0.5, 0.5);
      container.appendChild(canvas);
      ctx.font = "12px Helvetica";
      frames = 0;
@@ -114,15 +116,14 @@
 
  function init() {
      score = 0;
-     grid.init(EMPTY, COLS, ROWS);
+     grid.init(EMPTY, COLS * 2, ROWS * 2);
      var sp = {
          x: Math.floor(COLS / 2),
          y: ROWS - 1
      };
      snake.init(UP, sp.x, sp.y);
-     //  snakeNew.init(UP, sp.x + 2, sp.y + 2);
      grid.set(SNAKE, sp.x, sp.y);
-     setFood();
+     setFood(FRUIT);
  }
 
  function loop() {
@@ -147,7 +148,7 @@
          snake.direction = DOWN;
      }
 
-     if (frames % 5 === 0) {
+     if (frames % speed === 0) {
 
 
          var nx = snake.last.x;
@@ -175,10 +176,33 @@
              return init();
          }
 
-         if (grid.get(nx, ny) === FRUIT) {
+         if (grid.get(nx, ny) === FRUIT || grid.get(nx, ny) === APPLE) {
 
              score++;
-             setFood();
+             if (grid.get(nx, ny) === APPLE) {
+                 speed -= 3;
+                 score += 10;
+             } else {
+                 if (score % 3 === 0) {
+                     if (speed < 2) {
+                         speed = 1;
+                         console.log("under 2 " + speed);
+
+                     } else {
+                         speed -= 1;
+                         console.log(speed);
+                     }
+                 }
+             }
+             if (score % 2 === 0) {
+                 setFood(APPLE);
+                 if (score % 3 === 0) {
+                     setFood(FRUIT);
+                 }
+             } else {
+                 setFood(FRUIT);
+
+             }
          } else {
 
              var tail = snake.remove();
@@ -209,11 +233,15 @@
                  case FRUIT:
                      ctx.fillStyle = "#f00";
                      break;
+                 case APPLE:
+                     ctx.fillStyle = "#ee1289";
+                     break;
              }
              ctx.fillRect(x * tw, y * th, tw, th);
          }
      }
-
+     ctx.fillStyle = "#ff0";
+     ctx.fillText("SPEED: " + Math.abs(speed - 8), 10, canvas.height - 40);
      ctx.fillStyle = "#ff0";
      ctx.fillText("SCORE: " + score, 10, canvas.height - 25);
      ctx.fillStyle = "#ff0";

@@ -177,23 +177,15 @@
          }
 
          if (grid.get(nx, ny) === FRUIT || grid.get(nx, ny) === APPLE) {
-
-             score++;
              if (grid.get(nx, ny) === APPLE) {
-                 speed -= 3;
+                 speed = UpdateSpeed(APPLE, speed);
                  score += 10;
-             } else {
-                 if (score % 3 === 0) {
-                     if (speed < 2) {
-                         speed = 1;
-                         console.log("under 2 " + speed);
 
-                     } else {
-                         speed -= 1;
-                         console.log(speed);
-                     }
-                 }
+             } else {
+                 score++;
+                 speed = UpdateSpeed(FRUIT, speed);
              }
+
              if (score % 2 === 0) {
                  setFood(APPLE);
                  if (score % 3 === 0) {
@@ -212,6 +204,23 @@
          grid.set(SNAKE, nx, ny);
          snake.insert(nx, ny);
      }
+ }
+
+ function UpdateSpeed(FOOD, speed) {
+     if (FOOD === FRUIT) {
+         speed -= 1;
+         console.log(speed);
+     } else {
+         //APPLE
+         speed -= 3;
+     }
+
+     if (speed < 2) {
+         speed = 2;
+     }
+
+
+     return speed;
  }
 
  function draw() {

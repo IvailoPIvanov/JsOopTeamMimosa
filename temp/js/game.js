@@ -104,13 +104,14 @@
  //  }
 
  function main() {
-
+     container = document.getElementById('game-container');
      canvas = document.createElement("canvas");
+     canvas.id = "canvas";
      canvas.className = "canvasMain";
      canvas.width = COLS * 20;
      canvas.height = ROWS * 20;
      ctx = canvas.getContext("2d");
-     document.body.appendChild(canvas);
+     container.appendChild(canvas);
      ctx.font = "12px Helvetica";
      frames = 0;
      keystate = {};

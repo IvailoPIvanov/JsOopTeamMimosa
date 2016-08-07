@@ -28,11 +28,10 @@
   <script type="text/javascript">
     // jQuery Document $(document).ready(function(){ });
   </script>
-  <script src="js/game.js" type="text/javascript"></script>
-  <script src="js/CanvasGamepad.js" type="text/javascript"></script>
-  <script src="js/multikey.js" type="text/javascript"></script>
+
 
   <div id="game-container">
+
     <!--<canvas id="canvas" width="900" height="430"></canvas>-->
 
   </div>
@@ -45,6 +44,9 @@
   </div>
 
 </body>
+<script src="js/game.js" type="text/javascript"></script>
+<script src="js/CanvasGamepad.js" type="text/javascript"></script>
+<script src="js/multikey.js" type="text/javascript"></script>
 <script>
   CanvasGamepad.setup({
     canvas: "controller",
@@ -56,9 +58,9 @@
       name: "Music OFF",
       key: "v"
     },
-    trace: true,
-    debug: true,
-    hint: true,
+    trace: false,
+    debug: false,
+    hint: false,
     buttons: [{
       name: "a",
       "key": "s"
@@ -75,5 +77,6 @@
   });
   multikey.setup(CanvasGamepad.events, "qwasbv", true);
 </script>
+
 
 </html>

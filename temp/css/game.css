@@ -14,6 +14,8 @@ h1 {
 #game-container {
     margin-top: 23x;
     text-align: center;
+    width: 100%;
+    height: 80%;
 }
 
 #canvas {
@@ -110,4 +112,8 @@ a:hover {
 
 .canvasMain {
     margin-left: 10%;
+}
+
+#controller {
+    z-index: 900;
 }
